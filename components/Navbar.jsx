@@ -1,17 +1,18 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import logo from '@/assets/images/logo.png';
 import profileDefault from '@/assets/images/profile.png';
 import Link from 'next/link';
 import { FaGoogle } from 'react-icons/fa';
-import { FaG } from 'react-icons/fa6';
 import { useState } from 'react';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -59,20 +60,20 @@ const Navbar = () => {
               <div className="flex space-x-2">
                 <Link
                   href="/"
-                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className={`text-white ${pathname === '/' && 'bg-black'} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Home
                 </Link>
                 <Link
                   href="/properties"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                  className={`text-white ${pathname === '/properties' && 'bg-black'} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Properties
                 </Link>
                 {isLoggedIn && (
                   <Link
                     href="/properties/add"
-                    className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                    className={`text-white ${pathname === '/properties/add' && 'bg-black'} hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                   >
                     Add Property
                   </Link>
@@ -193,20 +194,20 @@ const Navbar = () => {
           <div className="space-y-1 px-2 pb-3 pt-2">
             <Link
               href="/"
-              className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+              className={`${pathname === '/' && 'bg-gray-900'} text-white block rounded-md px-3 py-2 text-base font-medium`}
             >
               Home
             </Link>
             <Link
               href="/properties"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+              className={`${pathname === '/properties' && 'bg-gray-900'} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
             >
               Properties
             </Link>
             {isLoggedIn && (
               <Link
                 href="/properties/add"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                className={`${pathname === '/properties/add' && 'bg-gray-900'} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
               >
                 Add Property
               </Link>
